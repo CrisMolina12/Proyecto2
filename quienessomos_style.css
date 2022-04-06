@@ -95,3 +95,36 @@ body{
         display: none;
     }
 }
+body{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;
+    
+}.menu{
+    list-style:none;
+    padding: 0;
+    background:chartreuse; ;
+    width:100%;
+    max-width: 1800px;
+    margin: auto;
+}
+
+.menu li a{
+    text-decoration: none;
+    color: rgb(3, 21, 24);
+    padding: 20px;
+    display: block;
+}
+
+.menu li{
+    display: inline-block;
+    text-align: center;
+}
+.menu li a:hover{
+    background: #ef8354; ;
+
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 4px;
+  }
