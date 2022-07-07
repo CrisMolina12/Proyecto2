@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'app/css/style.css' %}">
+</head>
+
+<body>
+    <ul class="menu">
+        
+        <li>
+            <a href="{% url 'registro'%}">Crear cuenta </a> 
+        </li>
+        <li>
+            <a href="{% url 'inicioadm'%}">Inicio como administrador </a> 
+        </li>
+        <li>
+            <a href="{% url 'quienessomos'%}">¿Quienes somos? </a>
+        </li>
+        <li>
+            <a href="{% url 'productos' %}">Ver productos </a>
+        </li>
+        {% if user.is_authenticated %}
+        <li>
+            <a href="{% url 'logout'%}">Inicio de sesion </a> 
+        </li>
+        <li>
+            <a href="#">@{{ user.username }} </a> 
+        </li>
+        {% else %}
+        <li>
+            <a href="{% url 'login' %}">Inicio de sesion </a> 
+        </li>
+        <li>
+            <a href="{% url 'registro' %}">Registrate </a> 
+        </li>
+        {% endif %}
+    </ul>
+
+
+    <div id="contenido">
+        
+        {% block contenido %}
+
+        {% endblock %}
+    </div>
+    
+    
+    <footer class="bg-light text-center text-lg-start footer-style">
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            <p>© 2022 Comunidad Jardinera | Todos los derechos reservados.</p>
+            <p><i class="bi bi-geo-alt"></i> Avenida Siempreviva </p>
+            <p><i class="bi bi-telephone"></i> (41) 226 4453</p>
+            <p><i class="bi bi-envelope"></i> Plantitas@gmail.com</p>
+            <p>Feriado de este mes:</p>
+            <p id="root"></p>
+        </div>
+    </footer>
+    <script src="{% static 'app/js/api.js' %}"></script>
+
+
+
+</body>
+
+</html>
