@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plantitas</title>
+    <!-- Latest compiled and minified CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Latest compiled JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+{%load static%}
+<link rel="stylesheet" href="{% static 'style.css'%}">
+<!-- <style>
+    div{
+        border:1;
+        border-style: solid;
+        border-color: red;
+    }
+</style>  -->
+
+<script src="https://kit.fontawesome.com/47e10d9a82.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <ul class="menu">
+        <li><a href="{% url 'home'%}">home </a> </li>
+        <li><a href="{% url 'perfil'%}">Perfil </a> </li>
+        <li><a href="{% url 'carrito'%}">Carrito </a> </li>
+        <li><a href="{% url 'historial'%}">Historial</a> </li>
+        <li><a href="{% url 'quienes'%}">¿Quienes somos? </a>
+        </li>
+        <li><a href="#" class="fa fa-facebook"></a></li>
+        <li><a href="#" class="fa fa-twitter"></a></li>
+    </ul>
+    <br>
+    <br>
+    <br>
+    <br>
+    {%load humanize%}
+        <div class="container-fluid px-5 mt-3 ">
+            <div class="row">
+                <h1 class="display-6">Gestion de administrador</h1>
+            </div>
+            <div class="row">
+                <table class="table table-stripped table-hover table-responsive">
+                    <thead class="table-success">
+                      <tr>
+                        <th>Nombre Producto</th>
+                        <th>Categoria</th>
+                        <th>Precio </th>
+                        <th>Cantidad</th>
+                        <th>Opciones</th>
+                      </tr>
+                    </thead>
+                    {% for p in entity %}
+                        <tr>
+                            <td>{{p.nombre}}</td>
+                            <td>{{p.categoria}}</td>
+                            <td>{{p.precio | intcomma}}</td>
+                            <td>{{p.cantidad}}</td>
+                           
+                            <td>
+                                <a href="{% url 'admmodificar' p.id %}" class="btn btn-success">Modificar</a>
+                                <a href="{% url 'eliminaproducto' p.id %}"class="btn btn-danger">Eliminar</a>
+                                
+                            </td>
+                        </tr>
+
+                    {% endfor %}
+                  </table>
+            </div>
+            <div>
+                {% include 'app/paginator.html'%}
+            </div>
+
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <footer class="bg-light text-center text-lg-start footer-style">
+            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+                <p>© 2022 Comunidad Jardinera | Todos los derechos reservados.</p>
+                <p><i class="bi bi-geo-alt"></i> Avenida Siempreviva </p>
+                <p><i class="bi bi-telephone"></i> (41) 226 4453</p>
+                <p><i class="bi bi-envelope"></i> Plantitas@gmail.com</p>
+            </div>
+        </footer>
+
+  
+</body>
+</html>

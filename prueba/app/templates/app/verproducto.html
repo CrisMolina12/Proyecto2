@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plantitas</title>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+
+  <!-- jQuery library -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+
+  <!-- Popper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+  {%load static%}
+  <link rel="stylesheet" href="{% static 'quienessomos_style.css'%}">
+  <!-- Add icon library -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+  <ul class="menu">
+    <li><a href="{% url 'home'%}">home </a> </li>
+        <li><a href="{% url 'perfil'%}">Perfil </a> </li>
+        <li><a href="{% url 'carrito'%}">Carrito </a> </li>
+        <li><a href="{% url 'historial'%}">Historial</a> </li>
+        <li><a href="{% url 'quienes'%}">¿Quienes somos? </a>
+        <li><a href="{% url 'admproducto'%}">Gestion de productos</a>
+    <li><a href="#" class="fa fa-facebook"></a></li>
+    <li><a href="#" class="fa fa-twitter"></a></li>
+  </ul>
+
+  <form action="{% url 'home'%}" method="get">
+    <input type="submit" class="btn btn-danger float-right" value="volver atras">
+  <br>
+  <br>
+  <br>
+  <br>
+  {% load humanize %}
+  
+  <div class="row pro">
+    
+    <div class="column">
+      {% for p in productos %}
+      <div class="card">
+        
+        <img src="{{p.imagen.url}}" alt="John"
+          style="width:150%">
+        <div class="container">
+          <br>
+          <h1> <span class="badge bg-success">{{p.nombre}}</span></h1>
+          <h4> <span class="badge bg-secondary"> {{p.precio}}</span></h4>
+          <h4> <span class="badge bg-secondary">  {{p.cantidad}}</span></h4>
+          <h4> <span class="badge bg-secondary"> {{p.categoria}}</span></h4>
+          <br>
+          <a href="{% url 'carrito' p.id %}" class="btn btn-success">Agregar al carrito</a>
+          <a href="{% url 'pagar' p.id %}" class="btn btn-success">comprar ahora</a>
+        
+        </div>
+      {% endfor %}
+      </div>
+      
+    </div>
+  
+    
+  </div>
+  
+  <br>
+  <br>
+  <br>
+  <br>
+  <footer class="bg-light text-center text-lg-start footer-style">
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+      <p>© 2022 Comunidad Jardinera | Todos los derechos reservados.</p>
+      <p><i class="bi bi-geo-alt"></i> Avenida Siempreviva </p>
+      <p><i class="bi bi-telephone"></i> (41) 226 4453</p>
+      <p><i class="bi bi-envelope"></i> Plantitas@gmail.com</p>
+    </div>
+  </footer>
+
+
+
+    
+
+</body>
+
+
+</html>
